@@ -16,6 +16,7 @@ const isLiked = (id) => {
 };
 
 const addToLiked = (id) => {
+  // bug one is here
   likedPostsId.push(id);
   showPosts(posts);
 };
@@ -27,6 +28,7 @@ const reportPost = (id) => {
 };
 
 const displayContent = (text) => {
+  // bug three is here
   return text.length < 30 ? text : text.slice(0, 15) + "<span class='fw-bold'>... read more</span>";
 };
 
@@ -35,8 +37,10 @@ const switchTab = (id) => {
     document.getElementById("posts").style.display = "grid";
     document.getElementById("liked").style.display = "none";
     document.getElementById("reported").style.display = "none";
+    // bug six is here
     const liked = document.getElementById('liked');
     liked.textContent = '';
+    // bug five is here
     const reported = document.getElementById('reported');
     reported.textContent = '';
 
@@ -66,6 +70,7 @@ const createPost = (post) => {
   const image = post.image;
   const div = document.createElement("article");
   div.classList.add("post");
+  // bug two wrong user image is here
   div.innerHTML = `
               <div class="post__header">
                 <div class="post__profile">
@@ -162,6 +167,7 @@ const displayLikedPosts = () => {
 
 const displayReportedPosts = () => {
   const reportedPosts = getReportedPosts();
+  // bug five is here
   reportedPosts.forEach((post) => {
     const div = createPost(post);
     document.getElementById("reported").appendChild(div);
